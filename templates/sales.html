@@ -1,0 +1,59 @@
+{%extends "base.html"%}
+{% block stuff %}
+    <!-- main container -->
+    <div class="container mt-5">
+        <div class="row">
+             <!-- Sidebar start-->
+          <div class="col-3" >
+            <ul class="list-group">
+              <li class="list-group-item">
+                <!-- avatar -->
+              <img src="/static/images/stock.jpg" class="rounded float-left mr-3" alt="Dashboard Avatar" width="50px" height="30px">
+              <!-- heading -->
+              <h3>DEV KENTA</h3>
+              </li>
+              <a href="/dashboard"><li class="list-group-item">Dashboard</li></a>
+              <a href="/inventories"><li class="list-group-item">Inventories</li></a>
+              <a href="/sales"><li class="list-group-item">Sales</li></a>
+              <a href="/stock"><li class="list-group-item">Stock</li></a>
+              <a href="/users"><li class="list-group-item">Users</li></a>
+            </ul>
+          </div>
+          <!-- sidebar end -->
+          <!-- main col start -->
+          <div class="col-md-9 col-sm-6 p-4">
+              <!-- table start -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>Product_id</th>
+                        <th>Quantity_sold</th>
+                        <th>Date_sold</th>
+                        <th>Product name</th>
+                        <!-- <th scope="col">#</th>
+                        <th>Inventory</th>
+                        <th>Quantity</th>
+                        <th>Revenue</th>
+                        <th>Profit</th>
+                        <th>Loss</th>
+                        <th>Entry Date</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for sale_item in all_sales %}
+                  <tr>
+                  <th scope='row'>{{loop.index}}</th>
+                  <td>{{sale_item[0]}}</td>
+                  <td>{{sale_item[1]}}</td>
+                  <td>{{sale_item[2]}}</td>
+                  <td>{{sale_item[3]}}</td>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+            </table>
+            <!-- table end -->
+          </div>
+        </div>
+      </div>
+   {% endblock %}   

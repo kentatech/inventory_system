@@ -1,0 +1,226 @@
+{%extends "base.html"%}
+{% block stuff %}
+      <!-- main container start -->
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Sidebar -->
+          <div class="col-3"> 
+            <h3>DEV KENTA</h3>          
+            <ul class="list-group">
+              <li class="list-group-item">
+                <!-- avatar -->
+              <img src="/static/images/stock.jpg" class="rounded float-left mr-3" alt="DaAvatar" width="50px" height="30px">
+              <!-- heading -->
+              </li>
+              <a href="/dashboard"><li class="list-group-item">Dashboard</li></a>
+              <a href="/inventories"><li class="list-group-item">Inventories</li></a>
+              <a href="/sales"><li class="list-group-item">Sales</li></a>
+              <a href="/stock"><li class="list-group-item">Stock</li></a>
+              <a href="/users"><li class="list-group-item">Users</li></a>
+            </ul>
+          </div>
+          <!-- sidebar column end -->
+          <div class="col-9" > 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal" style="margin-left: 250px;">
+          Add Inventory
+        </button>
+        <!-- Modal with forms -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="/inventories">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="text">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Category</label>
+                    <select name='category' class="form-control" id="exampleFormControlSelect1">
+                      <option value="products">Product</option>
+                      <option value="service">service</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Quantity</label>
+                    <input name="quantity" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Buying price</label>
+                    <input name="buying_price" type="text" class="form-control" id="exampleInputPassword1" placeholder="Text">  
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Selling price</label>
+                    <input name="selling_price" type="text" class="form-control" id="exampleInputPassword1" placeholder="Text">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal with forms end -->
+        
+            <!-- inventory table --> 
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product_Id</th>
+                  <th scope="col">Product_name</th>
+                  <th scope="col">buying_price</th>
+                  <th scope="col">selling_price</th>
+                  <th scope="col">stock_quantity</th>
+                  <th scope="col">category</th>
+                  <th scope="col">Sale <i class="fa fa-usd" aria-hidden="true"></i></th>
+                  <th scope="col">Edit <img src="/static/Bootstrap-final/pencil.svg" alt="edit"><a href="/templates/inventories.html/data-target="#exampleModal"></a></th>
+                  <th scope="col">Delete <img src="/static/Bootstrap-final/trash.svg" alt="delete"></th>
+                </tr>
+              </thead>
+              <tbody>
+                 {% for products in x%}
+                 <tr>
+                  <th scope='row'>{{loop.index}}</th>
+                  <td>{{products[0]}}</td>
+                  <td>{{products[1]}}</td>
+                  <td>{{products[2]}}</td>
+                  <td>{{products[3]}}</td>
+                  <td>{{products[4]}}</td>
+                  <td>{{products[5]}}</td>
+                  <td><!-- Button trigger modal sale -->
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#SaleModal">
+                      NIUZE 
+                    </button></td>
+                      <!-- Sale Modal -->
+            <div class="modal fade" id="SaleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action='/sales' method='post'>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Product_Id</label>
+                        <input type="hidden" class="form-control" id="exampleInputPassword1" value='{{products[0]}}' name='product_id'>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1"> Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter values here"name="quantity_sold">
+                    </div>
+                  <button type='submit'class='btn btn-primary'>submit</button>
+                  </form>
+                  </div>                                        
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <td><!-- Button trigger modal edit-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{products[0]}}">
+                      EDIT KITU
+                    </button></td>
+                    <!-- Edit Modal -->
+            <div class="modal fade" id="editModal{{products[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action='/edit_sales' method='post'>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Product Id</label>
+                        <input type="" class="form-control" id="exampleInputPassword1" value='{{products[0]}}' name='product_id'>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Product name</label>
+                        <input type="" class="form-control" id="exampleInputPassword1" value='{{products[1]}}' name='name'>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Category</label>
+                        <select name='category' class="form-control" id="exampleFormControlSelect1" value='{{products[2]}}'>
+                          <option value="products">Product</option>
+                          <option value="service">service</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Buying Price</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" value='{{products[3]}}' name="buying_price">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Selling Price</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" value='{{products[4]}}' name="selling_price">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1"> Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" value='{{products[5]}}' name="quantity">
+                    </div>
+                  <button type='submit'class='btn btn-primary'>submit</button>
+                  </form>
+                  </div>                                        
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+      
+                  <td><!-- Button trigger modal delete-->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal">
+                      ONDOA/SAFISHA
+                    </button></td>
+                 </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+            <!-- table end -->
+              <!-- Modals -->
+          
+
+            <!-- Delete Modal -->
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete!!!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modals end -->
+            
+            </div>
+          </div>
+        </div>
+        <!-- main container end -->
+        </div>
+      </div>
+      {% endblock %}

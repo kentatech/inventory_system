@@ -1,0 +1,64 @@
+{%extends "base.html"%}
+{% block stuff %}
+    <!-- main container -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar -->
+          <div class="col-3" >
+            <ul class="list-group">
+              <li class="list-group-item">
+                <!-- avatar -->
+              <img src="/static/images/stock.jpg" class="rounded float-left mr-3" alt="Dashboard Avatar" width="50px" height="30px">
+              <!-- heading -->
+              <h5>DEV KENTA</h5>
+              </li>
+              <a href="/dashboard"><li class="list-group-item">Dashboard</li></a>
+              <a href="/inventories"><li class="list-group-item">Inventories</li></a>
+              <a href="/sales"><li class="list-group-item">Sales</li></a>
+              <a href="/stock"><li class="list-group-item">Stock</li></a>
+              <a href="/users"><li class="list-group-item">Users</li></a>
+            </ul>
+          </div>
+          <!-- sidebar end -->
+          <!-- main col start -->
+          <div class="col-md-9 col-sm-6 p-4">
+               <!--table start  -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Inventory</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Entry Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>..</td>
+                        <td>..</td>
+                        <td>..</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>..</td>
+                        <td>..</td>
+                        <td>..</td>
+                    </tr>
+                </tbody>
+            </table>
+           <!-- table end -->
+          
+          </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+{% endblock %}
